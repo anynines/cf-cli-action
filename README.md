@@ -20,7 +20,7 @@ jobs:
     needs: build
     
     steps:
-    - uses: citizen-of-planet-earth/cf-cli-action@master
+    - uses: anynines/cf-cli-action@master
       with:
         cf_api: https://api.my-cloud-foundry.com
         cf_username: ${{ secrets.CF_USER }}
