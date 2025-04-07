@@ -8,7 +8,7 @@ INPUT_CF_USERNAME=$(echo "$1" | jq '.cf_username')
 INPUT_CF_PASSWORD=$(echo "$1" | jq '.cf_password')
 INPUT_CF_ORG=$(echo "$1" | jq '.cf_org')
 INPUT_CF_SPACE=$(echo "$1" | jq '.cf_space')
-INPUT_RETRIES=$(echo "$1" | jq '.retries')
+INPUT_RETRIES=$(echo "$1" | jq '.retries | tonumber')
 INPUT_COMMAND=$(echo "$1" | jq '.command')
 
 attempt=1
