@@ -30,12 +30,12 @@ runs:
   steps:
     - name: "Setup cf8 CLI"
       run: |
-        apt-get update
-        apt-get install -y ca-certificates jq wget gpg
+        sudo apt-get update
+        sudo apt-get install -y ca-certificates jq wget gpg
         wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | gpg --dearmor -o /usr/share/keyrings/cli.cloudfoundry.org.gpg
         echo "deb [signed-by=/usr/share/keyrings/cli.cloudfoundry.org.gpg] https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-        apt-get update
-        apt-get install -y cf8-cli
+        sudo apt-get update
+        sudo apt-get install -y cf8-cli
       shell: bash
     - name: "Execute entrypoint.sh"
       run: |
