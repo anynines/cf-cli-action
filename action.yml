@@ -37,8 +37,7 @@ runs:
         sudo apt-get update
         sudo apt-get install -y cf8-cli
       shell: bash
-    - uses: actions/checkout@v4
     - name: "Execute entrypoint.sh"
       run: |
-        ./entrypoint.sh ${{ inputs.command }}
+        ${GITHUB_ACTION_PATH}/entrypoint.sh ${{ inputs.command }}
       shell: bash
