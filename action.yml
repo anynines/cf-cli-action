@@ -39,6 +39,5 @@ runs:
       shell: bash
     - name: "Execute entrypoint.sh"
       run: |
-        ${{toJSON(inputs)}}
-        ${GITHUB_ACTION_PATH}/entrypoint.sh ${{ inputs.command }}
+        ${GITHUB_ACTION_PATH}/entrypoint.sh ${{ toJSON(inputs) }}
       shell: bash
