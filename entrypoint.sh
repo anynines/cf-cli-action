@@ -12,9 +12,9 @@ INPUT_COMMAND=$(echo "$1" | jq -r '.command')
 
 attempt=1
 
-while [ $attempt -le $INPUT_RETRIES ]; do
+while [ $attempt -le "$INPUT_RETRIES" ]; do
 
-  cf8 api $INPUT_CF_API
+  cf8 api "$INPUT_CF_API"
   cf8 auth "$INPUT_CF_USERNAME" "$INPUT_CF_PASSWORD"
 
   if [ -n "$INPUT_CF_ORG" ] && [ -n "$INPUT_CF_SPACE" ]; then
@@ -30,7 +30,7 @@ while [ $attempt -le $INPUT_RETRIES ]; do
     echo "Failed, Attempt $attempt of $INPUT_RETRIES."
     attempt=$((attempt + 1))
 
-    if [ $attempt -gt $INPUT_RETRIES ]; then
+    if [ $attempt -gt "$INPUT_RETRIES" ]; then
       echo "Maximum retry attempts reached. Exiting."
       exit 1
     fi
