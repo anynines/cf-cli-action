@@ -3,6 +3,7 @@
 : ${INPUT_RETRIES:=3}
 
 attempt=1
+env
 
 while [ $attempt -le $INPUT_RETRIES ]; do
 
