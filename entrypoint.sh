@@ -15,7 +15,7 @@ attempt=1
 
 while [ $attempt -le $INPUT_RETRIES ]; do
 
-  cf8 api "$INPUT_CF_API"
+  cf8 api $INPUT_CF_API
   cf8 auth "$INPUT_CF_USERNAME" "$INPUT_CF_PASSWORD"
 
   if [ -n "$INPUT_CF_ORG" ] && [ -n "$INPUT_CF_SPACE" ]; then
