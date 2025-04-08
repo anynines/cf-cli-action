@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - uses: ./.github/actions/cf-cli
+    - uses: anynines/cf-cli-action@master
       with:
         cf_api: ${{ secrets.CF_API }}
         cf_username: ${{ secrets.CF_USER }}
