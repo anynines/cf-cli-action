@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-cf api "$INPUT_CF_API"
+cf api "$INPUT_CF_API" "$INPUT_SKIP_SSL_VALIDATION"
 cf auth "$INPUT_CF_USERNAME" "$INPUT_CF_PASSWORD"
 
 if [ -n "$INPUT_CF_ORG" ] && [ -n "$INPUT_CF_SPACE" ]; then

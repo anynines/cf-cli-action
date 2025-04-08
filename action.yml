@@ -22,6 +22,9 @@ inputs:
   command:
     description: "Command to run using CF CLI"
     required: true
+  skip_ssl_validation:
+    description: "Skip SSL Validation"
+    required: false
 runs:
   using: "docker"
   image: "Dockerfile"
