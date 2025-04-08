@@ -7,9 +7,11 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
-    - uses: citizen-of-planet-earth/cf-cli-action@master
+    - uses: actions/checkout@v4
+    
+    - uses: ./.github/actions/cf-cli
       with:
         cf_api: ${{ secrets.CF_API }}
         cf_username: ${{ secrets.CF_USER }}
@@ -17,3 +19,4 @@ jobs:
         cf_org: ${{ secrets.CF_ORG }}
         cf_space: ${{ secrets.CF_SPACE }}
         command: target
+        retries: 4
