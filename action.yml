@@ -25,6 +25,9 @@ inputs:
   retries:
     description: "Number of retries that should be attempted"
     required: false
+  skip_ssl_validation:
+    description: "Skip SSL Validation"
+    required: false
 runs:
   using: "composite"
   steps:
