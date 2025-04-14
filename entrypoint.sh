@@ -11,6 +11,7 @@ INPUT_RETRIES=$(jq -r '.retries | tonumber' <<< "$1")
 INPUT_COMMAND=$(jq -r '.command' <<< "$1")
 INPUT_SKIP_SSL_VALIDATION=$(jq -r '.skip_ssl_validation' <<< "$1")
 
+
 cf api "$INPUT_CF_API"
 cf8 auth "$INPUT_CF_USERNAME" "$INPUT_CF_PASSWORD"
 
@@ -31,10 +32,10 @@ while [ $attempt -le "$INPUT_RETRIES" ]; do
     echo "Deployment Succesful."
     exit 0
   fi
-
-  attempt=$((attempt + 1))
+  
   echo "Failed, attempt $attempt of $INPUT_RETRIES."
-fi
+  attempt=$((attempt + 1))
+done
 
 echo "Maximum of $INPUT_RETRIES retry attempts reached. Exiting..."
 exit 1
