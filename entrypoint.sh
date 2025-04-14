@@ -25,9 +25,9 @@ while [ $attempt -le "$INPUT_RETRIES" ]; do
     echo "Deployment Succesful."
     exit 0
   fi
-
-  attempt=$((attempt + 1))
+  
   echo "Failed, attempt $attempt of $INPUT_RETRIES."
+  attempt=$((attempt + 1))
 done
 
 echo "Maximum of $INPUT_RETRIES retry attempts reached. Exiting..."
