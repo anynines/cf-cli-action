@@ -28,7 +28,7 @@ while [ $attempt -le "$INPUT_RETRIES" ]; do
 
   attempt=$((attempt + 1))
   echo "Failed, attempt $attempt of $INPUT_RETRIES."
-fi
+done
 
 echo "Maximum of $INPUT_RETRIES retry attempts reached. Exiting..."
 exit 1
