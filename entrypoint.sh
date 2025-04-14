@@ -9,8 +9,9 @@ INPUT_CF_ORG=$(jq -r '.cf_org' <<< "$1")
 INPUT_CF_SPACE=$(jq -r '.cf_space' <<< "$1")
 INPUT_RETRIES=$(jq -r '.retries | tonumber' <<< "$1")
 INPUT_COMMAND=$(jq -r '.command' <<< "$1")
+INPUT_SKIP_SSL_VALIDATION=$(jq -r '.skip_ssl_validation' <<< "$1")
 
-cf8 api "$INPUT_CF_API"
+cf api "$INPUT_CF_API"
 cf8 auth "$INPUT_CF_USERNAME" "$INPUT_CF_PASSWORD"
 
 if [ -n "$INPUT_CF_ORG" ] && [ -n "$INPUT_CF_SPACE" ]; then
@@ -19,7 +20,12 @@ fi
 
 attempt=1
 while [ $attempt -le "$INPUT_RETRIES" ]; do
-  sh -c "cf8 $INPUT_COMMAND"
+  if [ $INPUT_SKIP_SSL_VALIDATION -eq "true"]; then
+    sh -c "cf8 $INPUT_COMMAND --skip-ssl-validation"
+  else
+     sh -c "cf8 $INPUT_COMMAND"
+  fi
+
 
   if [ $? -eq 0 ]; then
     echo "Deployment Succesful."
