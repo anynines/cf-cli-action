@@ -32,15 +32,13 @@ runs:
   using: "composite"
   steps:
     - name: "Setup cf8 CLI"
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y ca-certificates jq wget gpg
-        sudo wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo gpg --dearmor -o /usr/share/keyrings/cli.cloudfoundry.org.gpg
-        sudo echo "deb [signed-by=/usr/share/keyrings/cli.cloudfoundry.org.gpg] https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
-        sudo apt-get update
-        sudo apt-get install -y cf8-cli
       shell: bash
+      run: |
+        cd ${GITHUB_ACTION_PATH}
+        wget --quiet 'https://packages.cloudfoundry.org/stable?release=linux64-binary&version=8.13.0&source=github-rel' --output-document cf8-cli.tgz
+        tar -xzf cf8-cli.tgz
+        sudo install cf8 /usr/bin
     - name: "Execute entrypoint.sh"
+      shell: bash
       run: |
         ${GITHUB_ACTION_PATH}/entrypoint.sh '${{ toJSON(inputs) }}'
-      shell: bash
