@@ -17,7 +17,7 @@ if [ -n "$INPUT_CF_ORG" ] && [ -n "$INPUT_CF_SPACE" ]; then
 fi
 
 CF_CLI_OPTIONS=""
-if [ $INPUT_SKIP_SSL_VALIDATION -eq "true" ]; then
+if [ "$INPUT_SKIP_SSL_VALIDATION" = "true" ]; then
   CF_CLI_OPTIONS="$CF_CLI_OPTIONS --skip-ssl-validation"
 fi
 
