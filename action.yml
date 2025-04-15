@@ -34,9 +34,10 @@ runs:
     - name: "Setup cf8 CLI"
       shell: bash
       run: |
+        cd ${GITHUB_ACTION_PATH}
         wget 'https://packages.cloudfoundry.org/stable?release=linux64-binary&version=8.13.0&source=github-rel' --output-document cf8-cli.tgz
         tar -xvzf cf8-cli.tgz
-        install cf8 /usr/bin
+        sudo install cf8 /usr/bin
     - name: "Execute entrypoint.sh"
       shell: bash
       run: |
