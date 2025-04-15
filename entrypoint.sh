@@ -14,7 +14,7 @@ if [ "$INPUT_SKIP_SSL_VALIDATION" = "true" ]; then
   CF_CLI_OPTIONS="$CF_CLI_OPTIONS --skip-ssl-validation"
 fi
 
-cf8 api "$INPUT_CF_API" "$CF_CLI_OPTIONS"
+cf8 api "$INPUT_CF_API" $CF_CLI_OPTIONS
 cf8 auth "$INPUT_CF_USERNAME" "$INPUT_CF_PASSWORD"
 
 if [ -n "$INPUT_CF_ORG" ] && [ -n "$INPUT_CF_SPACE" ]; then
