@@ -1,13 +1,11 @@
 #!/bin/sh -l
 
-: ${INPUT_RETRIES:=3}
-
 INPUT_CF_API=$(echo "$1" | jq -r '.cf_api')
 INPUT_CF_USERNAME=$(echo "$1" | jq -r '.cf_username')
 INPUT_CF_PASSWORD=$(echo "$1" | jq -r '.cf_password')
 INPUT_CF_ORG=$(echo "$1" | jq -r '.cf_org')
 INPUT_CF_SPACE=$(echo "$1" | jq -r '.cf_space')
-INPUT_RETRIES=$(echo "$1" | jq -r '.retries | tonumber')
+INPUT_RETRIES=$(echo "$1" | jq -r '.retries | try tonumber catch 3')
 INPUT_COMMAND=$(echo "$1" | jq -r '.command')
 INPUT_SKIP_SSL_VALIDATION=$(echo "$1" | jq -r '.skip_ssl_validation')
 
